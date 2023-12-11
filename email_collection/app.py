@@ -48,7 +48,7 @@ def lambda_handler(event, context):
         
         return {
             'statusCode': 200,
-            'body': json.dumps('Data submitted successfully. An email has been sent to your provided email address..')
+            'body': json.dumps('Data submitted successfully. An email has been sent to your provided email address...')
         }
     except Exception as e:
         # Log the error to CloudWatch Logs

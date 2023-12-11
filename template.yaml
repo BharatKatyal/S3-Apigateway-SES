@@ -11,6 +11,15 @@ Globals:
     Timeout: 3
     MemorySize: 128
 
+  Api:
+    Cors:
+      AllowMethods: "'POST'"
+      AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+      AllowOrigin: "'*'" # Replace with your domain in production
+# ... rest of the template remains unchanged
+
+    
+
     # You can add LoggingConfig parameters such as the Logformat, Log Group, and SystemLogLevel or ApplicationLogLevel. Learn more here https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-loggingconfig.
     # LoggingConfig:
     #   LogFormat: JSON
@@ -22,40 +31,38 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Sub "${AWS::StackName}-static-website"
+      # AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: error.html
-      
-
-  # StaticWebsiteBucketPolicy:
-  #   Type: AWS::S3::BucketPolicy
-  #   Properties:
-  #     Bucket: !Ref StaticWebsiteBucket
-  #     PolicyDocument:
-  #       Version: "2012-10-17"
-  #       Statement:
-  #         - Sid: PublicReadGetObject
-  #           Effect: Allow
-  #           Principal:
-  #             AWS: "*"
-  #           Action: "s3:GetObject"
-  #           Resource: !Sub "arn:aws:s3:::${StaticWebsiteBucket}/*"
-
-  # PublicAccessPolicy:
-  #   Type: AWS::S3::BucketPolicy
-  #   Properties: 
-  #     Bucket: !Ref StaticWebsiteBucket
-  #     PolicyDocument:
-  #       Version: "2012-10-17"
-  #       Statement:
-  #         - Effect: Allow
-  #           Principal: "*" 
-  #           Action: "s3:GetObject"
-  #           Resource: !Sub "arn:aws:s3:::${StaticWebsiteBucket}/*"
-
-
-
-
+      CorsConfiguration:
+        CorsRules:
+          - AllowedHeaders:
+              - "*"
+            AllowedMethods:
+              - POST
+            AllowedOrigins:
+              - "*"
+      # Tags:
+        # - Key: Name
+        #   Value: !Sub "${AWS::StackName}-static-website-bucket"
+        # - Key: Application
+        #   Value: !Ref AWS::StackName
+        # - Key: Environment
+        #   Value: !Ref Environment
+        # - Key: Team
+        #   Value: !Ref Team
+        # - Key: CostCenter
+        #   Value: !Ref CostCenter
+        # - Key: ApplicationOwner
+        #   Value: !Ref ApplicationOwner
+        # - Key: ApplicationOwnerEmail
+        #   Value: !Ref ApplicationOwnerEmail
+        # - Key: ApplicationOwnerPhone
+        #   Value: !Ref ApplicationOwnerPhone
+        # - Key: ApplicationOwnerAddress
+        #   Value: !Ref ApplicationOwnerAddress
+    
   UserDataTable:
     Type: AWS::DynamoDB::Table
     Properties:

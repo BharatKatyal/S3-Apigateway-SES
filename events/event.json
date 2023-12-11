@@ -1,5 +1,5 @@
 {
-  "body": "{\"first_name\":\"localinvoke\",\"email\":\"bharatkatyal@outlook.com\"}",
+  "body": "{\"first_name\":\"localinvoke\",\"email\":\"localinvokelambda@outlook.com\"}",
   "resource": "/hello",
   "path": "/hello",
   "httpMethod": "GET",

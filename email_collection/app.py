@@ -101,7 +101,7 @@ def lambda_handler(event, context):
             },
             Message={
                 'Subject': {
-                    'Data': 'Data Submitted'
+                    'Data': 'Welcome to company name'
                 },
                 'Body': {
                     'Text': {

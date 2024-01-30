@@ -33,6 +33,6 @@ The purpose of this sam template is meant to be for something like a landing pag
 # Deployment Parameters
 This component has two CloudFormation deployment parameters:
 
-- `SES_SOURCE_EMAIL`, a required parameter, represents the email sender. Must be an SES verified email within the region of deployment, you can change the region on the template by modifying the SES_REGION reference. If you attempt to send email using a non-verified address or domain, the operation results in an "Email address not verified" error.
+- `SES_SOURCE_EMAIL`, a required parameter, represents the email sender. Must be an SES verified email within the region of deployment, you can change the region on the template by modifying the `SES_REGION` reference. If you attempt to send email using a non-verified address or domain, the operation results in an "Email address not verified" error.
 
 - `Cors AllowOrigin`, an optional parameter, where you can restrict access to only specified domains.

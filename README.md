@@ -1,6 +1,6 @@
 # Email Collection Architecture diagram
 
-![banner](https://github.com/BharatKatyal/S3-Apigateway-SES/blob/main/Architecture_diagram.png?raw=true)    
+![banner](https://github.com/BharatKatyal/S3-Apigateway-SES/blob/main/github_doc_images/Architecture_diagram.png?raw=true)    
 
 ## This is a serverless component consisting of:
 
@@ -42,16 +42,16 @@ This component has two CloudFormation deployment parameters:
 
 # Deployment How to 
 1. `git clone https://github.com/BharatKatyal/S3-Apigateway-SES.git`
-2. CD into the folder by running `cd S3-Apigateway-SES``
+2. CD into the folder by running `cd S3-Apigateway-SES`
 3. in the template.yaml Edit the following
-- On Line 75 Edit Replace the <ENTER_VERIFIED_EMAIL> with your verified email on SES.  It should look similar to `SES_SOURCE_EMAIL: BK@live.com``
+- On Line 75 Edit Replace the `<ENTER_VERIFIED_EMAIL>`with your verified email on SES.  It should look similar to `SES_SOURCE_EMAIL: BK@live.com`
 
 4. in your terminal type `sam build`
-5. Then type `sam deploy` you may need to type `sam deploy --guided`
+5. Then type `sam deploy` You may need to type `sam deploy --guided`
 
 Once deployed you should see this in your terminal 
 
-![banner](https://github.com/BharatKatyal/S3-Apigateway-SES/blob/main/Architecture_diagram.png?raw=true) 
+![banner](https://github.com/BharatKatyal/S3-Apigateway-SES/blob/main/github_doc_images/after_sam_deploy.png?raw=true) 
 
 
 # Testing How to test
@@ -64,9 +64,9 @@ Once deployed you should see this in your terminal
 
 
 
-If Sucessful you should see this message in postman followed by an email (If you do not see email and you see this message check your junk folder)
+If successful you should see this message in Postman followed by an email (If you do not see an email and you see this message check your junk folder)
 `"Data submitted successfully. An email has been sent to your provided email address."`
-
+![banner](https://github.com/BharatKatyal/S3-Apigateway-SES/blob/main/github_doc_images/postrequest.png?raw=true) 
 Trouble Shooting
 
 If you get the following error 
@@ -75,4 +75,17 @@ If you get the following error
 
 if you get this error
 `"Error: An error occurred (InvalidParameterValue) when calling the SendEmail operation: Missing final '@domain'"` Recheck step 3 to make sure you have inputted an email address
+
+# Testing with Static Website
+
+You may have noticed an S3 Bucket in the Template along with an index.html - Although this is optional you can add this endpoint to a static website.
+
+To do so do the following
+Update: Line 10 in the HTML file and update the endpoint 
+![banner](https://github.com/BharatKatyal/S3-Apigateway-SES/blob/main/github_doc_images/html_update.png?raw=true) 
+
+Go ahead and open the html file locally or on S3 and input the data. You should see the following screen when sucessful 
+
+![banner](https://github.com/BharatKatyal/S3-Apigateway-SES/blob/main/github_doc_images/html_post.png?raw=true) 
+
 

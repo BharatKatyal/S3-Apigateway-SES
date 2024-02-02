@@ -84,8 +84,20 @@ To do so do the following
 Update: Line 10 in the HTML file and update the endpoint 
 ![banner](https://github.com/BharatKatyal/S3-Apigateway-SES/blob/main/github_doc_images/html_update.png?raw=true) 
 
-Go ahead and open the html file locally or on S3 and input the data. You should see the following screen when sucessful 
+Go ahead and open the html file locally or on S3 and input the data. You should see the following screen when successful 
 
 ![banner](https://github.com/BharatKatyal/S3-Apigateway-SES/blob/main/github_doc_images/html_post.png?raw=true) 
 
+# Additional Information for Production
+1. You should modify the dynamo table ProvisionedThroughput referenced in the template.yaml configurations to match your use case. 
+     ` ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1`
 
+2. Modify the Lambda Policy to use case.
+     ` Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref UserDataTable`
+
+3. Update CORS
+ `AllowOrigin: "'*'"` # Replace with your domain in production

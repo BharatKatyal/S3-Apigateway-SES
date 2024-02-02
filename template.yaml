@@ -42,27 +42,7 @@ Resources:
             AllowedMethods:
               - POST
             AllowedOrigins:
-              - "*"
-      # Tags:
-        # - Key: Name
-        #   Value: !Sub "${AWS::StackName}-static-website-bucket"
-        # - Key: Application
-        #   Value: !Ref AWS::StackName
-        # - Key: Environment
-        #   Value: !Ref Environment
-        # - Key: Team
-        #   Value: !Ref Team
-        # - Key: CostCenter
-        #   Value: !Ref CostCenter
-        # - Key: ApplicationOwner
-        #   Value: !Ref ApplicationOwner
-        # - Key: ApplicationOwnerEmail
-        #   Value: !Ref ApplicationOwnerEmail
-        # - Key: ApplicationOwnerPhone
-        #   Value: !Ref ApplicationOwnerPhone
-        # - Key: ApplicationOwnerAddress
-        #   Value: !Ref ApplicationOwnerAddress
-    
+              - "*"    
   UserDataTable:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -92,7 +72,7 @@ Resources:
       Environment:
         Variables:
           USER_DATA_TABLE: !Ref UserDataTable
-          SES_SOURCE_EMAIL: bharatkatyal@outlook.com
+          SES_SOURCE_EMAIL: <ENTER_VERIFIED_EMAIL>
           SES_REGION: us-east-1
       Policies:
         - DynamoDBCrudPolicy:
@@ -102,7 +82,6 @@ Resources:
               Action:
                 - ses:SendEmail
               Resource: "*"
-
 
   ApplicationResourceGroup:
     Type: AWS::ResourceGroups::Group
@@ -126,4 +105,4 @@ Outputs:
     Value: !Ref StaticWebsiteBucket
   APIGatewayAPI:
     Description: "APIGatewayAPI"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/submit"
